@@ -1,0 +1,28 @@
+{
+  "assets": [
+    {
+      "name": "idleRight",
+      "src": "../assets/idleRight.png"
+    },
+    {
+      "name": "idleLeft",
+      "src": "../assets/idleLeft.png"
+    },
+    {
+      "name": "runRight",
+      "src": "../assets/runRight.png"
+    },
+    {
+      "name": "runLeft",
+      "src": "../assets/runLeft.png"
+    },
+    {
+      "name": "jumpRight",
+      "src": "../assets/jumpRight.png"
+    },
+    {
+      "name": "jumpLeft",
+      "src": "../assets/jumpLeft.png"
+    }
+  ]
+}
