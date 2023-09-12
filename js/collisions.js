@@ -1,4 +1,4 @@
-import { player, platforms } from '../index.js';
+import { player, platforms } from './objects.js';
 import { setIsGrounded, setJumpCount } from './movements.js';
 
 //rectangular collision detection

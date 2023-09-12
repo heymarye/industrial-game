@@ -1,4 +1,4 @@
-import { context } from '../../index.js';
+import { context } from '../canvas.js';
 import { loadImageFromAssets } from '../utils.js';
 import { handlePlayerMovement } from '../movements.js';
 import { handlePlatformCollision } from '../collisions.js';

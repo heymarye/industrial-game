@@ -1,6 +1,8 @@
-import { canvas, gravity, player, platforms } from '../index.js';
+import { player, platforms } from './objects.js';
+import { canvas } from './canvas.js';
 import { keys, lastKey } from './keys.js';
 
+const gravity = 0.5;
 let lastDirection = 'right';
 let isGrounded = true;
 let jumpCount = 0;
