@@ -1,7 +1,7 @@
 function loadImageFromAssets(name) {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', '../data/assets.json');
+    xhr.open("GET", "../data/assets.json");
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
@@ -14,7 +14,9 @@ function loadImageFromAssets(name) {
               image.onload = () => resolve(image);
               image.onerror = reject;
             } else {
-              reject(new Error(`Image with name '${name}' not found in assets.json`));
+              reject(
+                new Error(`Image with name '${name}' not found in assets.json`)
+              );
             }
           } catch (error) {
             reject(error);

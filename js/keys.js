@@ -1,29 +1,29 @@
 const keys = {
-  w: { 
-    pressed: false 
+  w: {
+    pressed: false,
   },
-  a: { 
-    pressed: false 
+  a: {
+    pressed: false,
   },
-  d: { 
-    pressed: false 
+  d: {
+    pressed: false,
   },
-  ArrowUp: { 
-    pressed: false 
+  ArrowUp: {
+    pressed: false,
   },
-  ArrowLeft: { 
-    pressed: false 
+  ArrowLeft: {
+    pressed: false,
   },
-  ArrowRight: { 
-    pressed: false 
+  ArrowRight: {
+    pressed: false,
   },
-  spacebar: { 
-    pressed: false 
-  }
+  spacebar: {
+    pressed: false,
+  },
 };
 
-let lastKey = '';
-window.addEventListener('keydown', ({ keyCode }) => {
+let lastKey = "";
+window.addEventListener("keydown", ({ keyCode }) => {
   switch (keyCode) {
     //wasd
     case 87: //up
@@ -31,11 +31,11 @@ window.addEventListener('keydown', ({ keyCode }) => {
       break;
     case 65: //left
       keys.a.pressed = true;
-      lastKey = 'a';
+      lastKey = "a";
       break;
     case 68: //right
       keys.d.pressed = true;
-      lastKey = 'd';
+      lastKey = "d";
       break;
     //arrows
     case 38: //up
@@ -43,11 +43,11 @@ window.addEventListener('keydown', ({ keyCode }) => {
       break;
     case 37: //left
       keys.ArrowLeft.pressed = true;
-      lastKey = 'ArrowLeft';
+      lastKey = "ArrowLeft";
       break;
     case 39: //right
       keys.ArrowRight.pressed = true;
-      lastKey = 'ArrowRight';
+      lastKey = "ArrowRight";
       break;
     case 32: //up
       keys.spacebar.pressed = true;
@@ -55,12 +55,12 @@ window.addEventListener('keydown', ({ keyCode }) => {
   }
 });
 
-window.addEventListener('keyup', ({ keyCode }) => {
+window.addEventListener("keyup", ({ keyCode }) => {
   switch (keyCode) {
     case 87:
       keys.w.pressed = false;
       break;
-    case 65: 
+    case 65:
       keys.a.pressed = false;
       break;
     case 68:

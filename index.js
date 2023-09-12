@@ -1,5 +1,5 @@
-import { canvas, context } from './js/canvas.js';
-import { player, platforms } from './js/objects.js';
+import { canvas, context } from "./js/canvas.js";
+import { player, platforms } from "./js/objects.js";
 
 function animate() {
   window.requestAnimationFrame(animate);

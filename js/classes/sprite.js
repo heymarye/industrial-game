@@ -1,5 +1,4 @@
-import { context } from '../canvas.js';
-import { loadImageFromAssets } from '../utils.js';
+import { context } from "../canvas.js";
 
 class Sprite {
   constructor({ position, imageSrc, frameRate = 1, frameBuffer, animations }) {
@@ -9,7 +8,7 @@ class Sprite {
       this.loaded = true;
       this.frameWidth = this.image.width / this.frameRate;
       this.frameHeight = this.image.height;
-    }
+    };
     this.image.src = imageSrc;
     this.loaded = false;
     this.frameRate = frameRate;
@@ -52,12 +51,22 @@ class Sprite {
       const cropbox = {
         position: {
           x: this.frameWidth * this.currentFrame,
-          y: 0
+          y: 0,
         },
         width: this.frameWidth,
-        height: this.frameHeight
+        height: this.frameHeight,
       };
-      context.drawImage(this.image, cropbox.position.x, cropbox.position.y, cropbox.width, cropbox.height, this.position.x, this.position.y, this.width, this.height);
+      context.drawImage(
+        this.image,
+        cropbox.position.x,
+        cropbox.position.y,
+        cropbox.width,
+        cropbox.height,
+        this.position.x,
+        this.position.y,
+        this.width,
+        this.height
+      );
       this.updateFrames();
     }
   }

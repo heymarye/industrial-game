@@ -8,7 +8,7 @@ class Platform {
   }
 
   draw() {
-    context.fillStyle = 'black';
+    context.fillStyle = "black";
     context.fillRect(this.position.x, this.position.y, this.width, this.height);
   }
 }

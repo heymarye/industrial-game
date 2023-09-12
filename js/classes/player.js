@@ -1,46 +1,57 @@
-import { context } from '../canvas.js';
-import { loadImageFromAssets } from '../utils.js';
-import { handlePlayerMovement } from '../movements.js';
-import { handlePlatformCollision } from '../collisions.js';
-import { Sprite } from './sprite.js';
+import { Sprite } from "./sprite.js";
+import { handlePlayerMovement } from "../movements.js";
+import { handlePlatformCollision } from "../collisions.js";
 
 class Player extends Sprite {
-  constructor({ imageSrc, frameWidth, frameHeight, frameRate, frameBuffer, currentFrame, elapsedFrames, animations }) {
-    super({ imageSrc, frameWidth, frameHeight, frameRate, frameBuffer, currentFrame, elapsedFrames, animations });
+  constructor({}) { //imageSrc, animations, frameRate, frameBuffer, frameWidth, frameHeight, currentFrame, elapsedFrames
+    super({
+      imageSrc: "./assets/idleRight.png",
+      animations: {
+        idleLeft: {
+          imageSrc: "./assets/idleLeft.png",
+          frameRate: 3,
+          frameBuffer: 30,
+        },
+        idleRight: {
+          imageSrc: "./assets/idleRight.png",
+          frameRate: 3,
+          frameBuffer: 30,
+        },
+        runLeft: {
+          imageSrc: "./assets/runLeft.png",
+          frameRate: 8,
+          frameBuffer: 15,
+        },
+        runRight: {
+          imageSrc: "./assets/runRight.png",
+          frameRate: 8,
+          frameBuffer: 15,
+        },
+        jumpLeft: {
+          imageSrc: "./assets/jumpLeft.png",
+          frameRate: 8,
+          frameBuffer: 10,
+        },
+        jumpRight: {
+          imageSrc: "./assets/jumpRight.png",
+          frameRate: 8,
+          frameBuffer: 10,
+        },
+      },
+    });
     this.position = {
       x: 100,
-      y: 100
+      y: 100,
     };
     this.velocity = {
       x: 0,
-      y: 0
+      y: 0,
     };
-    this.width = 32;
-    this.height = 32;
-    // this.isImageLoaded = false;
-    // this.imageName = imageName;
-  }
-
-  // async loadImage() {
-  //   try {
-  //     this.image = await loadImageFromAssets(this.imageName);
-  //     this.isImageLoaded = true;
-  //   } catch (error) {
-  //     console.error('Failed to load player image:', error);
-  //   }
-  // }
-
-  draw() {
-    // if (this.isImageLoaded) {
-    //   context.drawImage(this.image, this.position.x, this.position.y, this.width, this.height);
-    // }
-    
-    // context.fillStyle = 'rgba(255, 0, 0, 0.5)';
-    // context.fillRect(this.position.x, this.position.y, this.width, this.height);
+    this.width = 42;
+    this.height = 42;
   }
 
   update() {
-    //this.loadImage();
     super.draw();
     handlePlayerMovement();
     handlePlatformCollision();

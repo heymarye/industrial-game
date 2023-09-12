@@ -1,9 +1,9 @@
-import { player, platforms } from './objects.js';
-import { canvas } from './canvas.js';
-import { keys, lastKey } from './keys.js';
+import { player, platforms } from "./objects.js";
+import { canvas } from "./canvas.js";
+import { keys, lastKey } from "./keys.js";
 
 const gravity = 0.5;
-let lastDirection = 'right';
+let lastDirection = "right";
 let isGrounded = true;
 let jumpCount = 0;
 const maxJumpCount = 2;
@@ -20,20 +20,20 @@ function handlePlayerMovement() {
     jumpCount = 0;
   }
   //horizontal movement (left, right)
-  if (keys.a.pressed && lastKey === 'a' || keys.ArrowLeft.pressed && lastKey === 'ArrowLeft') { //&& player.position.x > 100
+  if (keys.a.pressed && lastKey === "a" || keys.ArrowLeft.pressed && lastKey === "ArrowLeft") { //&& player.position.x > 100
     player.velocity.x = -3;
-    lastDirection = 'left';
-    player.switchAnimation('runLeft');
-  } else if (keys.d.pressed && lastKey === 'd' || keys.ArrowRight.pressed && lastKey === 'ArrowRight') { //&& player.position.x < 400
+    lastDirection = "left";
+    player.switchAnimation("runLeft");
+  } else if (keys.d.pressed && lastKey === "d" || keys.ArrowRight.pressed && lastKey === "ArrowRight") { //&& player.position.x < 400
     player.velocity.x = 3;
-    lastDirection = 'right';
-    player.switchAnimation('runRight');
+    lastDirection = "right";
+    player.switchAnimation("runRight");
   } else {
     player.velocity.x = 0;
-    if (lastDirection === 'left') { 
-      player.switchAnimation('idleLeft');
-    } else if (lastDirection === 'right') {
-      player.switchAnimation('idleRight');
+    if (lastDirection === "left") { 
+      player.switchAnimation("idleLeft");
+    } else if (lastDirection === "right") {
+      player.switchAnimation("idleRight");
     }
   }
   //vertical movement (jump)
