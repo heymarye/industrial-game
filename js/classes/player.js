@@ -6,6 +6,9 @@ class Player extends Sprite {
   constructor({}) { //imageSrc, animations, frameRate, frameBuffer, frameWidth, frameHeight, currentFrame, elapsedFrames
     super({
       imageSrc: "./assets/idleRight.png",
+      imageScale: 2.5,
+      frameRate: 3,
+      frameBuffer: 30,
       animations: {
         idleLeft: {
           imageSrc: "./assets/idleLeft.png",
@@ -47,8 +50,6 @@ class Player extends Sprite {
       x: 0,
       y: 0,
     };
-    this.width = 42;
-    this.height = 42;
   }
 
   update() {

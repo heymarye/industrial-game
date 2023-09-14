@@ -1,10 +1,8 @@
 import { Player } from "./classes/player.js";
 import { Platform } from "./classes/platform.js";
+import { Sprite } from "./classes/sprite.js";
 
-const player = new Player({
-  frameRate: 3,
-  frameBuffer: 30,
-});
+const player = new Player({});
 
 const platforms = [
   new Platform({
@@ -27,4 +25,12 @@ const platforms = [
   }),
 ];
 
-export { player, platforms };
+const map = new Sprite({
+  position: {
+    x: 0,
+    y: 0
+  },
+  imageSrc: '../assets/map.png'
+});
+
+export { player, platforms, map };

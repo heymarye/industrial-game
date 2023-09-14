@@ -1,16 +1,17 @@
 import { context } from "../canvas.js";
 
 class Sprite {
-  constructor({ position, imageSrc, frameRate = 1, frameBuffer, animations }) {
+  constructor({ position, imageSrc, imageScale = 1, frameRate = 1, frameBuffer, animations }) {
     this.position = position;
     this.image = new Image();
     this.image.onload = () => {
       this.loaded = true;
-      this.frameWidth = this.image.width / this.frameRate;
-      this.frameHeight = this.image.height;
+      this.width = this.image.width / this.frameRate;
+      this.height = this.image.height;
     };
     this.image.src = imageSrc;
     this.loaded = false;
+    this.imageScale = imageScale;
     this.frameRate = frameRate;
     this.frameBuffer = frameBuffer;
     this.currentFrame = 0;
@@ -45,16 +46,16 @@ class Sprite {
       }
     }
   }
-
+  
   draw() {
     if (this.loaded) {
       const cropbox = {
         position: {
-          x: this.frameWidth * this.currentFrame,
+          x: this.width * this.currentFrame,
           y: 0,
         },
-        width: this.frameWidth,
-        height: this.frameHeight,
+        width: this.width,
+        height: this.height,
       };
       context.drawImage(
         this.image,
@@ -62,10 +63,10 @@ class Sprite {
         cropbox.position.y,
         cropbox.width,
         cropbox.height,
-        this.position.x,
-        this.position.y,
-        this.width,
-        this.height
+        this.position.x - (this.width * this.imageScale - this.width) / this.imageScale,
+        this.position.y - (this.height * this.imageScale - this.height),
+        this.width * this.imageScale,
+        this.height * this.imageScale
       );
       this.updateFrames();
     }
