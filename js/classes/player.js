@@ -3,7 +3,7 @@ import { handlePlayerMovement } from "../movements.js";
 import { handlePlatformCollision } from "../collisions.js";
 
 class Player extends Sprite {
-  constructor({}) { //imageSrc, animations, frameRate, frameBuffer, frameWidth, frameHeight, currentFrame, elapsedFrames
+  constructor({}) {
     super({
       imageSrc: "./assets/idleRight.png",
       imageScale: 2.5,
