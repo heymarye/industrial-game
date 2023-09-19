@@ -1,45 +1,5 @@
 import { CollisionBlock } from "./classes/collisionBlock.js";
 
-function loadImageFromAssets(name) {
-  return new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
-    xhr.open("GET", "../data/assets.json");
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4) {
-        if (xhr.status === 200) {
-          try {
-            const data = JSON.parse(xhr.responseText);
-            const asset = data.assets.find((asset) => asset.name === name);
-            if (asset) {
-              const image = new Image();
-              image.src = asset.src;
-              image.onload = () => resolve(image);
-              image.onerror = reject;
-            } else {
-              reject(
-                new Error(`Image with name '${name}' not found in assets.json`)
-              );
-            }
-          } catch (error) {
-            reject(error);
-          }
-        } else {
-          reject(new Error(`Failed to load assets.json: status ${xhr.status}`));
-        }
-      }
-    };
-    xhr.send();
-  });
-}
-
-// Array.prototype.parse2d = function () {
-//   const rows = [];
-//   for (let i = 0; i < this.length; i += mapWidth) { 
-//     rows.push(this.slice(i, i + mapWidth)); 
-//   }
-//   return rows;
-// };
-
 function parse2d(array) {
   const mapWidth = 50; //number of cells in a row
   const rows = [];
@@ -48,25 +8,6 @@ function parse2d(array) {
   }
   return rows;
 };
-
-// Array.prototype.createObjectsFrom2d = function () {
-//   const objects = [];
-//   this.forEach((row, rowIndex) => {
-//     row.forEach((symbol, symbolIndex) => {
-//       if (symbol !== 0) { //collision exists
-//         objects.push(
-//           new CollisionBlock({
-//             position: {
-//               x: symbolIndex * 16,
-//               y: rowIndex * 16,
-//             },
-//           })
-//         );
-//       }
-//     });
-//   });
-//   return objects;
-// };
 
 function createObjectsFrom2d(array) {
   const collisionBlocks = [];
@@ -129,27 +70,58 @@ function createObjectsFrom2d(array) {
     ]
   };
 
+  function calculateShapeDimensions(shape) {
+    let minX = Infinity;
+    let minY = Infinity;
+    let maxX = -Infinity;
+    let maxY = -Infinity;
+  
+    shape.forEach(point => {
+      if (point.x < minX) minX = point.x;
+      if (point.y < minY) minY = point.y;
+      if (point.x > maxX) maxX = point.x;
+      if (point.y > maxY) maxY = point.y;
+    });
+  
+    const width = (maxX - minX) * CollisionBlock.scale;
+    const height = (maxY - minY) * CollisionBlock.scale;
+    // const width = (maxX - minX);
+    // const height = (maxY - minY);
+  
+    return { width, height };
+  }
+
   array.forEach((row, rowIndex) => {
     row.forEach((symbol, symbolIndex) => {
       let shape; 
+      let dimensions;
       if (symbol === 4445) {
         shape = shapes.square;
+        dimensions = calculateShapeDimensions(shape);
       } else if (symbol === 4479) {
         shape = shapes.horizontalSmallRectangle;
+        dimensions = calculateShapeDimensions(shape);
       } else if (symbol === 4475) {
         shape = shapes.horizontalBigRectangle;
+        dimensions = calculateShapeDimensions(shape);
       } else if (symbol === 4313) {
         shape = shapes.leftVerticalRectangle;
+        dimensions = calculateShapeDimensions(shape);
       } else if (symbol === 4314) {
         shape = shapes.rightVerticalRectangle;
+        dimensions = calculateShapeDimensions(shape);
       } else if (symbol === 4276) {
         shape = shapes.leftRectangleCorner;
+        dimensions = calculateShapeDimensions(shape);
       } else if (symbol === 4277) {
         shape = shapes.rightRectangleCorner;
+        dimensions = calculateShapeDimensions(shape);
       } else if (symbol === 4282) {
         shape = shapes.leftTriangle;
+        dimensions = calculateShapeDimensions(shape);
       } else if (symbol === 4281) {
         shape = shapes.rightTriangle;
+        dimensions = calculateShapeDimensions(shape);
       }
 
       if (shape) {
@@ -159,7 +131,8 @@ function createObjectsFrom2d(array) {
               x: symbolIndex * CollisionBlock.width * CollisionBlock.scale,
               y: rowIndex * CollisionBlock.height * CollisionBlock.scale,
             },
-            shape: shape
+            shape: shape,
+            dimensions: dimensions
           })
         );
       }
@@ -168,4 +141,4 @@ function createObjectsFrom2d(array) {
   return collisionBlocks;
 }
 
-export { loadImageFromAssets, parse2d, createObjectsFrom2d };
+export { parse2d, createObjectsFrom2d };

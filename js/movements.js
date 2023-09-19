@@ -9,23 +9,24 @@ let jumpCount = 0;
 const maxJumpCount = 2;
 
 function handlePlayerMovement() {
-  player.position.x += player.velocity.x;
-  player.position.y += player.velocity.y;
+  //player.position.x += player.velocity.x;
+  //player.position.y += player.velocity.y;
   //application of gravity
-  if (player.position.y + player.height + player.velocity.y <= canvas.height) {
-    player.velocity.y += gravity;
-  } else {
-    player.velocity.y = 0;
-    isGrounded = true;
-    jumpCount = 0;
-  }
+  // if (player.position.y + player.height + player.velocity.y <= canvas.height) {
+  //   player.velocity.y += gravity;
+  // } else {
+  //   player.velocity.y = 0;
+  //   isGrounded = true;
+  //   jumpCount = 0;
+  // }
+  
   //horizontal movement (left, right)
   if (keys.a.pressed && lastKey === "a" || keys.ArrowLeft.pressed && lastKey === "ArrowLeft") { //&& player.position.x > 100
-    player.velocity.x = -3;
+    player.velocity.x = -2;
     lastDirection = "left";
     player.switchAnimation("runLeft");
   } else if (keys.d.pressed && lastKey === "d" || keys.ArrowRight.pressed && lastKey === "ArrowRight") { //&& player.position.x < 400
-    player.velocity.x = 3;
+    player.velocity.x = 2;
     lastDirection = "right";
     player.switchAnimation("runRight");
   } else {
@@ -38,7 +39,7 @@ function handlePlayerMovement() {
   }
   //vertical movement (jump)
   if ((keys.w.pressed || keys.ArrowUp.pressed || keys.spacebar.pressed) && (isGrounded || jumpCount < maxJumpCount)) {
-    player.velocity.y = -15;
+    player.velocity.y = -10;
     // console.log(lastDirection);
     // if (lastDirection === 'left') {
     //   player.switchAnimation('jumpLeft');

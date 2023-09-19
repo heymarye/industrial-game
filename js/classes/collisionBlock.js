@@ -3,10 +3,11 @@ import { context } from "../canvas.js";
 class CollisionBlock {
   static width = 16;
   static height = 16;
-  static scale = 4;
-  constructor({ position, shape }) {
+  static scale = 4; //4
+  constructor({ position, shape, dimensions }) {
     this.position = position;
     this.shape = shape;
+    this.dimensions = dimensions;
   }
 
   draw() {

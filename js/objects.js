@@ -4,19 +4,24 @@ import { Sprite } from "./classes/sprite.js";
 import { collionsData } from "../data/collisions.js";
 import { parse2d, createObjectsFrom2d } from "./utils.js";
 
-const player = new Player({});
+const parsedCollisions = parse2d(collionsData);
+const collisionBlocks = createObjectsFrom2d(parsedCollisions);
+
+const player = new Player({
+  collisionBlocks
+});
 
 const platforms = [
   new Platform({
     position: {
-      x: 400,
-      y: 360,
+      x: 200,
+      y: 556,
     },
   }),
   new Platform({
     position: {
       x: 650,
-      y: 200,
+      y: 470,
     },
   }),
   new Platform({
@@ -34,8 +39,5 @@ const map = new Sprite({
   },
   imageSrc: '../assets/map.png'
 });
-
-const parsedCollisions = parse2d(collionsData);
-const collisionBlocks = createObjectsFrom2d(parsedCollisions);
 
 export { player, platforms, map, collisionBlocks };

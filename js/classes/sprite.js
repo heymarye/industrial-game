@@ -63,10 +63,14 @@ class Sprite {
         cropbox.position.y,
         cropbox.width,
         cropbox.height,
-        this.position.x - (this.width * this.imageScale - this.width) / this.imageScale,
-        this.position.y - (this.height * this.imageScale - this.height),
+        // this.position.x - (this.width * this.imageScale - this.width) / this.imageScale,
+        // this.position.y - (this.height * this.imageScale - this.height),
+        // this.width * this.imageScale,
+        // this.height * this.imageScale
+        this.position.x,
+        this.position.y + (this.height * (1 - this.imageScale)), //adjust the y-coordinate to scale from the bottom
         this.width * this.imageScale,
-        this.height * this.imageScale
+        this.height * this.imageScale //scale only the y-axis
       );
       this.updateFrames();
     }

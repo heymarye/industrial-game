@@ -4,7 +4,7 @@ class Platform {
   constructor({ position }) {
     this.position = position;
     this.width = 200,
-    this.height = 10;
+    this.height = 30;
   }
 
   draw() {

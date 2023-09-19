@@ -9,9 +9,9 @@ function animate() {
     collisionBlock.draw();
   });
   player.update();
-  platforms.forEach((platform) => {
-    platform.draw();
-  });
+  // platforms.forEach((platform) => {
+  //   platform.draw();
+  // });
 }
 
 animate();
