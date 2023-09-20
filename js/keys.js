@@ -28,6 +28,7 @@ window.addEventListener("keydown", ({ keyCode }) => {
     //wasd
     case 87: //up
       keys.w.pressed = true;
+      //lastKey = "w";
       break;
     case 65: //left
       keys.a.pressed = true;
@@ -40,6 +41,7 @@ window.addEventListener("keydown", ({ keyCode }) => {
     //arrows
     case 38: //up
       keys.ArrowUp.pressed = true;
+      //lastKey = "ArrowUp";
       break;
     case 37: //left
       keys.ArrowLeft.pressed = true;
@@ -51,6 +53,7 @@ window.addEventListener("keydown", ({ keyCode }) => {
       break;
     case 32: //up
       keys.spacebar.pressed = true;
+      //lastKey = "spacebar";
       break;
   }
 });

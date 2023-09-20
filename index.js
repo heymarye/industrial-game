@@ -1,5 +1,5 @@
 import { canvas, context } from "./js/canvas.js";
-import { player, platforms, map, collisionBlocks } from "./js/objects.js";
+import { player, map, collisionBlocks } from "./js/objects.js";
 
 function animate() {
   window.requestAnimationFrame(animate);
@@ -9,9 +9,6 @@ function animate() {
     collisionBlock.draw();
   });
   player.update();
-  // platforms.forEach((platform) => {
-  //   platform.draw();
-  // });
 }
 
 animate();
