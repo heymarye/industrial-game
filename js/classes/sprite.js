@@ -68,8 +68,12 @@ class Sprite {
         this.width * this.imageScale,
         this.height * this.imageScale
       );
-      this.updateFrames();
     }
+  }
+
+  update() {
+    this.draw();
+    this.updateFrames();
   }
 }
 

@@ -4,7 +4,7 @@ import { keys, lastKey } from "../keys.js";
 import { context } from "../canvas.js";
 
 class Player extends Sprite {
-  constructor({ collisionBlocks = []}) {
+  constructor({ collisionBlocks = [] }) {
     super({
       imageSrc: "./assets/idleRight.png",
       imageScale: 2.5,
@@ -56,7 +56,7 @@ class Player extends Sprite {
       isGrounded: true,
       jumpCount: 0,
       maxJumpCount: 2
-    }
+    };
     this.collisionBlocks = collisionBlocks;
   }
 
@@ -83,7 +83,7 @@ class Player extends Sprite {
     }
     //vertical movement (jump)
     if ((keys.w.pressed || keys.ArrowUp.pressed || keys.spacebar.pressed) && (this.movement.isGrounded || this.movement.jumpCount < this.movement.maxJumpCount)) {
-      this.velocity.y = -12;
+      this.velocity.y = -9;
       this.movement.isGrounded = false;
       this.movement.jumpCount++;
       keys.w.pressed = false;
@@ -98,7 +98,7 @@ class Player extends Sprite {
   }
 
   applyGravity() {
-    const gravity = 0.5;
+    const gravity = 0.25;
     this.velocity.y += gravity;
     this.position.y += this.velocity.y;
   }
@@ -159,7 +159,7 @@ class Player extends Sprite {
   update() {
     // context.fillStyle = 'green';
     // context.fillRect(this.position.x, this.position.y, this.width * this.imageScale, this.height * this.imageScale);
-    super.draw();
+    super.update();
     this.movePlayer();
     this.checkForHorizontalCollisions();
     this.applyGravity();

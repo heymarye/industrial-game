@@ -11,7 +11,7 @@ class CollisionBlock {
   }
 
   draw() {
-    context.fillStyle = "rgba(255, 0, 0, 0.5)";
+    context.fillStyle = "rgba(255, 0, 0, 0)";
     context.beginPath();
     //define the custom shape
     this.shape.forEach((point, index) => { //loop over each point in the shape
