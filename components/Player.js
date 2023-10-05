@@ -34,12 +34,12 @@ export default class Player extends Sprite {
         jumpLeft: {
           imageSrc: "./assets/jumpLeft.png",
           frameRate: 8,
-          frameBuffer: 5,
+          frameBuffer: 12,
         },
         jumpRight: {
           imageSrc: "./assets/jumpRight.png",
           frameRate: 8,
-          frameBuffer: 5,
+          frameBuffer: 12,
         },
       },
     });
@@ -55,7 +55,7 @@ export default class Player extends Sprite {
       lastDirection: "right",
       isGrounded: true,
       jumpCount: 0,
-      maxJumpCount: 2
+      maxJumpCount: 2,
     };
     this.collisionBlocks = collisionBlocks;
   }
@@ -63,18 +63,18 @@ export default class Player extends Sprite {
   movePlayer() {
     this.position.x += this.velocity.x;
     //horizontal movement (left, right)
-    if (keys.a.pressed && lastKey === "a" || keys.ArrowLeft.pressed && lastKey === "ArrowLeft") {
-      this.velocity.x = -2;
+    if ((keys.a.pressed && lastKey === "a") || (keys.ArrowLeft.pressed && lastKey === "ArrowLeft")) {
+      this.velocity.x = -1;
       this.movement.lastDirection = "left";
       this.switchAnimation("runLeft");
-    } else if (keys.d.pressed && lastKey === "d" || keys.ArrowRight.pressed && lastKey === "ArrowRight") {
-      this.velocity.x = 2;
+    } else if ((keys.d.pressed && lastKey === "d") || (keys.ArrowRight.pressed && lastKey === "ArrowRight")) {
+      this.velocity.x = 1;
       this.movement.lastDirection = "right";
       this.switchAnimation("runRight");
     } else {
       this.velocity.x = 0;
       if (this.movement.isGrounded) {
-        if (this.movement.lastDirection === "left") { 
+        if (this.movement.lastDirection === "left") {
           this.switchAnimation("idleLeft");
         } else if (this.movement.lastDirection === "right") {
           this.switchAnimation("idleRight");
@@ -94,13 +94,13 @@ export default class Player extends Sprite {
       } else if (this.movement.lastDirection === "right") {
         this.switchAnimation("jumpRight");
       }
-    } 
+    }
   }
 
   applyGravity() {
     const gravity = 0.25;
-    this.velocity.y += gravity;
     this.position.y += this.velocity.y;
+    this.velocity.y += gravity;
   }
 
   isCollidingWith(collisionBlock) {
@@ -108,32 +108,32 @@ export default class Player extends Sprite {
       left: this.position.x,
       right: this.position.x + this.width * this.imageScale,
       top: this.position.y,
-      bottom: this.position.y + this.height * this.imageScale
-    }
+      bottom: this.position.y + this.height * this.imageScale,
+    };
     const collision = {
       left: collisionBlock.position.x,
       right: collisionBlock.position.x + CollisionBlock.width * CollisionBlock.scale,
       top: collisionBlock.position.y,
-      bottom: collisionBlock.position.y + CollisionBlock.height * CollisionBlock.scale
-    }
-    if (player.left <= collision.right &&
-        player.right >= collision.left &&
-        player.top <= collision.bottom &&
-        player.bottom >= collision.top) {
-        return true;
+      bottom: collisionBlock.position.y + CollisionBlock.height * CollisionBlock.scale,
+    };
+    if (player.left <= collision.right && player.right >= collision.left && player.top <= collision.bottom && player.bottom >= collision.top) {
+      return true;
     }
   }
-  
+
   checkForHorizontalCollisions() {
-  for (let collisionBlock of this.collisionBlocks) {
-    if (this.isCollidingWith(collisionBlock)) {
-          if (this.velocity.x < 0) { //collision on x-axis going to the left
-            this.position.x = collisionBlock.position.x + CollisionBlock.width * CollisionBlock.scale + 0.01; //to the right of the collisionBlock
-            break;
-          } else if (this.velocity.x > 0) { //collision on x-axis to the right
-            this.position.x = collisionBlock.position.x - this.width * this.imageScale - 0.01; //to the left of the collisionBlock
-            break;
-          }
+    this.position.x += this.velocity.x;
+    for (let collisionBlock of this.collisionBlocks) {
+      if (this.isCollidingWith(collisionBlock)) {
+        if (this.velocity.x < 0) { //collision on x-axis going to the left
+          this.velocity.x = 0;
+          this.position.x = collisionBlock.position.x + CollisionBlock.width * CollisionBlock.scale + 0.01; //to the right of the collisionBlock
+          break;
+        } else if (this.velocity.x > 0) { //collision on x-axis to the right
+          this.velocity.x = 0;
+          this.position.x = collisionBlock.position.x - this.width * this.imageScale - 0.01; //to the left of the collisionBlock
+          break;
+        }
       }
     }
   }
@@ -141,17 +141,17 @@ export default class Player extends Sprite {
   checkForVerticalCollisions() {
     for (let collisionBlock of this.collisionBlocks) {
       if (this.isCollidingWith(collisionBlock)) {
-          if (this.velocity.y < 0) { //collision on y-axis going up
-            this.velocity.y = 0;
-            this.position.y = collisionBlock.position.y + CollisionBlock.height * CollisionBlock.scale + 0.01; //to the bottom of the collisionBlock
-            break;
-          } else if (this.velocity.y > 0) { //collision on y-axis going down
-            this.velocity.y = 0;
-            this.position.y = collisionBlock.position.y - this.height * this.imageScale - 0.01; //to the top of the collisionBlock
-            this.movement.isGrounded = true;
-            this.movement.jumpCount = 0;
-            break;
-          }
+        if (this.velocity.y < 0) { //collision on y-axis going up
+          this.velocity.y = 0;
+          this.position.y = collisionBlock.position.y + CollisionBlock.height * CollisionBlock.scale + 0.01; //to the bottom of the collisionBlock
+          break;
+        } else if (this.velocity.y > 0) { //collision on y-axis going down
+          this.velocity.y = 0;
+          this.position.y = collisionBlock.position.y - this.height * this.imageScale - 0.01; //to the top of the collisionBlock
+          this.movement.isGrounded = true;
+          this.movement.jumpCount = 0;
+          break;
+        }
       }
     }
   }
