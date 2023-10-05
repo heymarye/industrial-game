@@ -1,9 +1,9 @@
-import { Sprite } from "./sprite.js";
-import { CollisionBlock } from "./collisionBlock.js";
-import { keys, lastKey } from "../keys.js";
-import { context } from "../canvas.js";
+import Sprite from "./Sprite.js";
+import CollisionBlock from "./CollisionBlock.js";
+import { keys, lastKey } from "../helpers/keys.js";
+import { context } from "../helpers/canvas.js";
 
-class Player extends Sprite {
+export default class Player extends Sprite {
   constructor({ collisionBlocks = [] }) {
     super({
       imageSrc: "./assets/idleRight.png",
@@ -166,5 +166,3 @@ class Player extends Sprite {
     this.checkForVerticalCollisions();
   }
 }
-
-export { Player };

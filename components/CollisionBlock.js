@@ -1,6 +1,6 @@
-import { context } from "../canvas.js";
+import { context } from "../helpers/canvas.js";
 
-class CollisionBlock {
+export default class CollisionBlock {
   static width = 16;
   static height = 16;
   static scale = 4;
@@ -31,5 +31,3 @@ class CollisionBlock {
     context.fill();
   }
 }
-
-export { CollisionBlock };

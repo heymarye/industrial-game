@@ -1,7 +1,7 @@
-import { canvas } from "../canvas.js";
-import { player, map } from "../objects.js";
+import { canvas } from "../helpers/canvas.js";
+import { player, map } from "../helpers/objects.js";
 
-class Camera {
+export default class Camera {
   constructor({}) {
     //the camera is centered on the player
     this.x = player.position.x - canvas.width / 2;
@@ -22,5 +22,3 @@ class Camera {
     context.setTransform(1, 0, 0, 1, -this.x, -this.y);
   }
 }
-
-export { Camera };

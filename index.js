@@ -1,5 +1,5 @@
-import { canvas, context } from "./js/canvas.js";
-import { player, map, collisionBlocks, camera } from "./js/objects.js";
+import { canvas, context } from "./helpers/canvas.js";
+import { player, map, collisionBlocks, camera } from "./helpers/objects.js";
 
 function animate() {
   window.requestAnimationFrame(animate);

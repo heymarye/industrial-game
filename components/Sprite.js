@@ -1,6 +1,6 @@
-import { context } from "../canvas.js";
+import { context } from "../helpers/canvas.js";
 
-class Sprite {
+export default class Sprite {
   constructor({ position, imageSrc, imageScale = 1, frameRate = 1, frameBuffer, animations }) {
     this.position = position;
     this.image = new Image();
@@ -76,5 +76,3 @@ class Sprite {
     this.updateFrames();
   }
 }
-
-export { Sprite };

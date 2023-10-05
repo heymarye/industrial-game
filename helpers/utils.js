@@ -1,6 +1,6 @@
-import { CollisionBlock } from "./classes/collisionBlock.js";
+import CollisionBlock from "../components/CollisionBlock.js";
 
-function parse2d(array) {
+export function parse2d(array) {
   const mapWidth = 50; //number of cells in a row
   const rows = [];
   for (let i = 0; i < array.length; i += mapWidth) { 
@@ -9,7 +9,7 @@ function parse2d(array) {
   return rows;
 };
 
-function createObjectsFrom2d(array) {
+export function createObjectsFrom2d(array) {
   const collisionBlocks = [];
   const shapes = {
     square: [
@@ -140,5 +140,3 @@ function createObjectsFrom2d(array) {
   });
   return collisionBlocks;
 }
-
-export { parse2d, createObjectsFrom2d };

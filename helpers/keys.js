@@ -1,4 +1,4 @@
-const keys = {
+export const keys = {
   w: {
     pressed: false,
   },
@@ -22,7 +22,7 @@ const keys = {
   },
 };
 
-let lastKey = "";
+export let lastKey = "";
 window.addEventListener("keydown", ({ keyCode }) => {
   switch (keyCode) {
     //wasd
@@ -80,5 +80,3 @@ window.addEventListener("keyup", ({ keyCode }) => {
       break;
   }
 });
-
-export { keys, lastKey };
