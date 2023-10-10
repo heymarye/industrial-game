@@ -111,10 +111,10 @@ export default class Player extends Sprite {
       bottom: this.position.y + this.height * this.imageScale,
     };
     const collision = {
-      left: collisionBlock.position.x,
-      right: collisionBlock.position.x + CollisionBlock.width * CollisionBlock.scale,
-      top: collisionBlock.position.y,
-      bottom: collisionBlock.position.y + CollisionBlock.height * CollisionBlock.scale,
+      left: collisionBlock.position.x + collisionBlock.shape[0].x * CollisionBlock.scale,
+      right: collisionBlock.position.x + (collisionBlock.shape[0].x + collisionBlock.dimensions.width) * CollisionBlock.scale,
+      top: collisionBlock.position.y + collisionBlock.shape[0].y * CollisionBlock.scale,
+      bottom: collisionBlock.position.y + (collisionBlock.shape[0].y + collisionBlock.dimensions.height) * CollisionBlock.scale,
     };
     if (player.left <= collision.right && player.right >= collision.left && player.top <= collision.bottom && player.bottom >= collision.top) {
       return true;
@@ -125,25 +125,34 @@ export default class Player extends Sprite {
     this.position.x += this.velocity.x;
     for (let collisionBlock of this.collisionBlocks) {
       if (this.isCollidingWith(collisionBlock)) {
+        const player = {
+          left: this.position.x,
+          right: this.position.x + this.width * this.imageScale
+        };
+        const collision = {
+          left: collisionBlock.position.x + collisionBlock.shape[0].x * CollisionBlock.scale,
+          right: collisionBlock.position.x + (collisionBlock.shape[0].x + collisionBlock.dimensions.width) * CollisionBlock.scale
+        };
+
         if (this.velocity.x < 0) { //collision on x-axis going to the left
           this.velocity.x = 0;
-          this.position.x = collisionBlock.position.x + CollisionBlock.width * CollisionBlock.scale + 0.01; //to the right of the collisionBlock
+          this.position.x = collision.right + 0.01; //to the right of the collisionBlock
           break;
         } else if (this.velocity.x > 0) { //collision on x-axis to the right
           this.velocity.x = 0;
-          this.position.x = collisionBlock.position.x - this.width * this.imageScale - 0.01; //to the left of the collisionBlock
+          this.position.x = collision.left - (player.right - player.left) - 0.01; //to the left of the collisionBlock
           break;
         }
       }
     }
   }
-
+  
   checkForVerticalCollisions() {
     for (let collisionBlock of this.collisionBlocks) {
       if (this.isCollidingWith(collisionBlock)) {
         if (this.velocity.y < 0) { //collision on y-axis going up
           this.velocity.y = 0;
-          this.position.y = collisionBlock.position.y + CollisionBlock.height * CollisionBlock.scale + 0.01; //to the bottom of the collisionBlock
+          this.position.y = collisionBlock.position.y + collisionBlock.dimensions.height * CollisionBlock.scale + 0.01; //to the bottom of the collisionBlock
           break;
         } else if (this.velocity.y > 0) { //collision on y-axis going down
           this.velocity.y = 0;

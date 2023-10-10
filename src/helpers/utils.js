@@ -62,11 +62,11 @@ export function createObjectsFrom2d(array) {
       { x: 0, y: 5 }
     ],
     rightTriangle: [
-      { x: 16, y: 0 },
       { x: 0, y: 0 },
       { x: 0, y: 16 },
       { x: 4, y: 16 },
-      { x: 16, y: 5 }
+      { x: 16, y: 5 },
+      { x: 16, y: 0 }
     ]
   };
 
@@ -82,11 +82,9 @@ export function createObjectsFrom2d(array) {
       if (point.x > maxX) maxX = point.x;
       if (point.y > maxY) maxY = point.y;
     });
-  
-    const width = (maxX - minX) * CollisionBlock.scale;
-    const height = (maxY - minY) * CollisionBlock.scale;
-    // const width = (maxX - minX);
-    // const height = (maxY - minY);
+
+    const width = (maxX - minX);
+    const height = (maxY - minY);
   
     return { width, height };
   }
