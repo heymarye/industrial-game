@@ -1,5 +1,5 @@
 import { collionsData } from "../data/collisions.js";
-import { parse2d, createObjectsFrom2d } from "../helpers/utils.js";
+import { parse2d, createObjectsFrom2d } from "./utils.js";
 import Player from "../components/Player.js";
 import Sprite from "../components/Sprite.js";
 import Camera from "../components/Camera.js";
