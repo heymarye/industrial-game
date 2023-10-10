@@ -1,7 +1,7 @@
 {
-  "name": "industrial",
+  "name": "metalopolis",
   "version": "1.0.0",
-  "description": "Industrial",
+  "description": "Metalopolis",
   "scripts": {
     "build": "webpack --mode=production",
     "serve": "webpack serve --open --mode=development",
