@@ -2,6 +2,7 @@ import Sprite from "./Sprite.js";
 import CollisionBlock from "./CollisionBlock.js";
 import { keys, lastKey } from "../helpers/keys.js";
 import { context } from "../helpers/canvas.js";
+import { map } from "../helpers/objects.js";
 
 export default class Player extends Sprite {
   constructor({ collisionBlocks = [] }) {
@@ -58,6 +59,7 @@ export default class Player extends Sprite {
       maxJumpCount: 2,
     };
     this.collisionBlocks = collisionBlocks;
+    this.health = 3;
   }
 
   movePlayer() {
@@ -145,6 +147,13 @@ export default class Player extends Sprite {
         }
       }
     }
+
+    //collision with the left/right map border
+    if (this.position.x < 0) {
+      this.position.x = 0;
+    } else if (this.position.x + this.width * this.imageScale > map.width) {
+      this.position.x = map.width - this.width * this.imageScale;
+    }
   }
   
   checkForVerticalCollisions() {
@@ -162,6 +171,14 @@ export default class Player extends Sprite {
           break;
         }
       }
+    }
+
+    //temporary collision with the bottom map border (before the getsHit is implemented)
+    if (this.position.y + this.height * this.imageScale > map.height) {
+      this.velocity.y = 0;
+      this.position.y = map.height - this.height * this.imageScale;
+      this.movement.isGrounded = true;
+      this.movement.jumpCount = 0;
     }
   }
 

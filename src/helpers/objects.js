@@ -16,7 +16,15 @@ export const map = new Sprite({
     x: 0,
     y: 0
   },
-  imageSrc: '../assets/map.png'
+  imageSrc: "../assets/map.png"
 });
 
 export const camera = new Camera({});
+
+export const door = new Sprite({
+  position: {
+    x: 3000,
+    y: 784 
+  },
+  imageSrc: "../assets/door-v1(scaled).png"
+});

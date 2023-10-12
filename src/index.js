@@ -1,5 +1,5 @@
 import { canvas, context } from "./helpers/canvas.js";
-import { player, map, collisionBlocks, camera } from "./helpers/objects.js";
+import { player, map, collisionBlocks, camera, door } from "./helpers/objects.js";
 
 function animate() {
   window.requestAnimationFrame(animate);
@@ -10,6 +10,7 @@ function animate() {
   collisionBlocks.forEach((collisionBlock) => {
     collisionBlock.draw();
   });
+  door.draw();
   player.update();
 }
 
