@@ -23,8 +23,10 @@ export const camera = new Camera({});
 
 export const door = new Sprite({
   position: {
-    x: 3000,
-    y: 784 
+    x: 150, //3000
+    y: 80  //784
   },
-  imageSrc: "../assets/door-v1(scaled).png"
+  imageSrc: "../assets/door-v1(scaled)-spritesheet.png",
+  frameRate: 6,
+  frameBuffer: 15
 });
